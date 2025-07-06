@@ -1,0 +1,157 @@
+body {
+  font-family: system-ui, sans-serif;
+  padding: 16px;
+  width: 350px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1, h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.95em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+}
+
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 6px;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+li button:hover {
+  color: #000;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark h1,
+body.dark h2 {
+  color: #ffffff;
+}
+
+body.dark label {
+  color: #ccc;
+}
+
+body.dark input,
+body.dark textarea {
+  background-color: #1e1e1e;
+  border: 1px solid #555;
+  color: #e0e0e0;
+}
+
+body.dark button {
+  background-color: #2e7d32;
+  color: #e0e0e0;
+}
+
+body.dark button:hover {
+  background-color: #1b5e20;
+}
+
+body.dark li {
+  background: #1e1e1e;
+  border: 1px solid #333;
+}
+
+body.dark li button {
+  color: #bbb;
+}
+
+body.dark li button:hover {
+  color: #fff;
+}
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.header-bar h1 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.settings-link {
+  font-size: 1.4em;
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.settings-link:hover {
+  background-color: #ddd;
+}
+
+body.dark .settings-link:hover {
+  background-color: #333;
+}

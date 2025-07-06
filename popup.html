@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Prompt Saver</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header-bar">
+  <h1>📚 Prompt Saver</h1>
+  <a href="settings.html" class="settings-link" title="Einstellungen">⚙️ Einstellungen</a>
+</header>
+
+
+  <!-- Suchleiste -->
+  <div class="input-group search-group">
+    <label for="searchInput">🔍 Suche nach Name oder Tag:</label>
+    <div style="display: flex; gap: 5px;">
+      <input type="text" id="searchInput" placeholder="z. B. Marketing oder #Email" />
+      <button id="searchButton">Suchen</button>
+    </div>
+  </div>
+
+  <button id="openModal">➕ Neuer Prompt</button>
+
+  <!-- Prompt-Liste -->
+  <h2>Gespeicherte Prompts</h2>
+  <ul id="promptList"></ul>
+  <button id="loadMoreButton">Mehr anzeigen</button>
+
+  <div class="tools" style="margin-top: 12px;">
+    <button id="exportBtn">📤 Exportieren</button>
+    <button id="importBtn">📥 Importieren</button>
+    <input type="file" id="importFile" accept=".json" style="display: none;" />
+  </div>
+
+  <!-- Modal zur Eingabe -->
+  <div id="modal" class="modal" style="display:none">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+
+      <div class="input-group">
+        <label for="promptName">📝 Prompt-Name:</label>
+        <input type="text" id="promptName" />
+      </div>
+
+      <div class="input-group">
+        <label for="promptTags">🏷️ Tags (kommagetrennt):</label>
+        <input type="text" id="promptTags" placeholder="z. B. Marketing, Email" />
+      </div>
+
+      <div class="input-group">
+        <label for="promptInput">✏️ Prompt-Text:</label>
+        <textarea id="promptInput"></textarea>
+      </div>
+
+      <button id="savePrompt">💾 Prompt speichern</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Einstellungen</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <h1>Einstellungen</h1>
+
+  <div class="toggle-container">
+    <label for="darkModeToggle">Dunkelmodus aktivieren</label>
+    <input type="checkbox" id="darkModeToggle" />
+  </div>
+
+  <button id="backButton" class="back-button">← Zurück</button>
+
+  <script src="settings.js"></script>
+  <script>
+    document.getElementById('backButton').addEventListener('click', () => {
+      // Beispiel: Zurück zur Hauptseite
+      window.location.href = 'index.html'; 
+      // Falls bei Popup: window.close();
+    });
+  </script>
+</body>
+</html>

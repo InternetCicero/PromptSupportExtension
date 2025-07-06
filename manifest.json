@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt Saver",
+  "version": "1.0",
+  "description": "Speichere und verwalte deine Prompts.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "prompt.png"
+    }
+  },
+  "permissions": ["storage"],
+  "icons": {
+    "16": "prompt.png"
+  }
+}
