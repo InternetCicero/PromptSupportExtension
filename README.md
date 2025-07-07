@@ -44,11 +44,12 @@
 1. Dieses Repository herunterladen oder klonen:
    ```bash
    git clone https://github.com/dein-benutzername/prompt-saver.git
-Öffne deinen Browser (z. B. Chrome) und gehe zu chrome://extensions/
 
-2. Aktiviere den Entwicklermodus und klicke auf Entpackte Erweiterung laden
+2. Öffne deinen Browser (z. B. Chrome) und gehe zu chrome://extensions/
 
-3. Wähle den Ordner prompt-saver aus
+3. Aktiviere den Entwicklermodus und klicke auf Entpackte Erweiterung laden
+
+4. Wähle den Ordner prompt-saver aus
 
 🛠️ Technologien
 HTML, CSS, JavaScript
