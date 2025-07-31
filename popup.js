@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       li.appendChild(tagEl);
     }
 
+    
     // Prompt text with expand/collapse
     const textDiv = document.createElement("div");
     textDiv.className = "prompt-text";
@@ -92,10 +93,21 @@ document.addEventListener("DOMContentLoaded", () => {
     textDiv.style.maxHeight = "4.5em";
     textDiv.style.transition = "max-height 0.2s";
 
+    // Count lines (split by \n or wrap)
+    const lineCount = prompt.text.split(/\r\n|\r|\n/).length;
+
     const toggleBtn = document.createElement("button");
     toggleBtn.textContent = "Mehr anzeigen";
+    toggleBtn.className = "expand-btn";
     toggleBtn.style.marginTop = "4px";
+    toggleBtn.type = "button";
+    if (lineCount <= 3) {
+      toggleBtn.disabled = true;
+      toggleBtn.style.opacity = "0.5";
+      toggleBtn.style.cursor = "default";
+    }
     toggleBtn.addEventListener("click", () => {
+      if (toggleBtn.disabled) return;
       const expanded = textDiv.classList.toggle("expanded");
       if (expanded) {
         textDiv.style.webkitLineClamp = "unset";

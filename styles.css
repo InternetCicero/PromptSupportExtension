@@ -83,6 +83,26 @@ li button:hover {
   color: #000;
 }
 
+.expand-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.95em;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.expand-btn:hover:enabled {
+  background: #eee;
+  color: #333;
+}
+.expand-btn:disabled {
+  color: #bbb;
+  background: none;
+  cursor: default;
+}
+
 .prompt-text {
   display: -webkit-box;
   -webkit-line-clamp: 3;
