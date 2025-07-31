@@ -60,81 +60,109 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderNextPage() {
-    setButtonsDisabled(true);
+  setButtonsDisabled(true);
 
-    const end = currentIndex + PAGE_SIZE;
-    const nextBatch = filteredPrompts.slice(currentIndex, end);
+  const end = currentIndex + PAGE_SIZE;
+  const nextBatch = filteredPrompts.slice(currentIndex, end);
 
-    nextBatch.forEach((prompt) => {
-      const li = document.createElement("li");
+  nextBatch.forEach((prompt, idx) => {
+    const li = document.createElement("li");
 
-      const name = document.createElement("strong");
-      name.textContent = prompt.name;
-      li.appendChild(name);
+    const name = document.createElement("strong");
+    name.textContent = prompt.name;
+    li.appendChild(name);
 
-      if (prompt.tags && prompt.tags.length > 0) {
-        const tagEl = document.createElement("p");
-        tagEl.textContent = "🏷️ " + prompt.tags.join(", ");
-        tagEl.style.fontStyle = "italic";
-        li.appendChild(tagEl);
+    if (prompt.tags && prompt.tags.length > 0) {
+      const tagEl = document.createElement("p");
+      tagEl.textContent = "🏷️ " + prompt.tags.join(", ");
+      tagEl.style.fontStyle = "italic";
+      li.appendChild(tagEl);
+    }
+
+    // Prompt text with expand/collapse
+    const textDiv = document.createElement("div");
+    textDiv.className = "prompt-text";
+    textDiv.textContent = prompt.text;
+    textDiv.style.display = "block";
+    textDiv.style.whiteSpace = "pre-line";
+    textDiv.style.overflow = "hidden";
+    textDiv.style.display = "-webkit-box";
+    textDiv.style.webkitBoxOrient = "vertical";
+    textDiv.style.webkitLineClamp = "3";
+    textDiv.style.maxHeight = "4.5em";
+    textDiv.style.transition = "max-height 0.2s";
+
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Mehr anzeigen";
+    toggleBtn.style.marginTop = "4px";
+    toggleBtn.addEventListener("click", () => {
+      const expanded = textDiv.classList.toggle("expanded");
+      if (expanded) {
+        textDiv.style.webkitLineClamp = "unset";
+        textDiv.style.maxHeight = "none";
+        toggleBtn.textContent = "Weniger anzeigen";
+      } else {
+        textDiv.style.webkitLineClamp = "3";
+        textDiv.style.maxHeight = "4.5em";
+        toggleBtn.textContent = "Mehr anzeigen";
       }
-
-      const text = document.createElement("p");
-      text.textContent = prompt.text;
-      li.appendChild(text);
-
-      const buttonBar = document.createElement("div");
-      buttonBar.style.display = "flex";
-      buttonBar.style.justifyContent = "flex-end";
-      buttonBar.style.gap = "8px";
-
-      const editBtn = document.createElement("button");
-      editBtn.textContent = "✏️";
-      editBtn.title = "Bearbeiten";
-      editBtn.addEventListener("click", () => {
-        promptName.value = prompt.name;
-        promptTags.value = (prompt.tags || []).join(", ");
-        promptInput.value = prompt.text;
-        isEditing = true;
-        editingOriginalName = prompt.name;
-        saveButton.textContent = "Aktualisieren";
-        openModal.click(); // öffne Modal
-      });
-      buttonBar.appendChild(editBtn);
-
-      const copyBtn = document.createElement("button");
-      copyBtn.textContent = "📋";
-      copyBtn.title = "Kopieren";
-      copyBtn.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(prompt.text);
-          showStatus("Kopiert!");
-        } catch (err) {
-          alert("Fehler beim Kopieren: " + err);
-        }
-      });
-      buttonBar.appendChild(copyBtn);
-
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "🗑️";
-      deleteBtn.title = "Löschen";
-      deleteBtn.addEventListener("click", () => {
-        allPrompts = allPrompts.filter(p => p.name !== prompt.name);
-        chrome.storage.local.set({ prompts: allPrompts }, () => {
-          applyFilter(searchInput.value);
-          showStatus("Prompt gelöscht");
-        });
-      });
-      buttonBar.appendChild(deleteBtn);
-
-      li.appendChild(buttonBar);
-      promptList.appendChild(li);
     });
 
-    currentIndex = end;
-    loadMoreButton.style.display = currentIndex < filteredPrompts.length ? "block" : "none";
-    setButtonsDisabled(false);
-  }
+    li.appendChild(textDiv);
+    li.appendChild(toggleBtn);
+
+    const buttonBar = document.createElement("div");
+    buttonBar.style.display = "flex";
+    buttonBar.style.justifyContent = "flex-end";
+    buttonBar.style.gap = "8px";
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "✏️";
+    editBtn.title = "Bearbeiten";
+    editBtn.addEventListener("click", () => {
+      promptName.value = prompt.name;
+      promptTags.value = (prompt.tags || []).join(", ");
+      promptInput.value = prompt.text;
+      isEditing = true;
+      editingOriginalName = prompt.name;
+      saveButton.textContent = "Aktualisieren";
+      openModal.click();
+    });
+    buttonBar.appendChild(editBtn);
+
+    const copyBtn = document.createElement("button");
+    copyBtn.textContent = "📋";
+    copyBtn.title = "Kopieren";
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(prompt.text);
+        showStatus("Kopiert!");
+      } catch (err) {
+        alert("Fehler beim Kopieren: " + err);
+      }
+    });
+    buttonBar.appendChild(copyBtn);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "🗑️";
+    deleteBtn.title = "Löschen";
+    deleteBtn.addEventListener("click", () => {
+      allPrompts = allPrompts.filter(p => p.name !== prompt.name);
+      chrome.storage.local.set({ prompts: allPrompts }, () => {
+        applyFilter(searchInput.value);
+        showStatus("Prompt gelöscht");
+      });
+    });
+    buttonBar.appendChild(deleteBtn);
+
+    li.appendChild(buttonBar);
+    promptList.appendChild(li);
+  });
+
+  currentIndex = end;
+  loadMoreButton.style.display = currentIndex < filteredPrompts.length ? "block" : "none";
+  setButtonsDisabled(false);
+}
 
   function applyFilter(searchTerm = "") {
     promptList.innerHTML = "";

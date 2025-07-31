@@ -23,17 +23,6 @@
 
   <button id="openModal">➕ Neuer Prompt</button>
 
-  <!-- Prompt-Liste -->
-  <h2>Gespeicherte Prompts</h2>
-  <ul id="promptList"></ul>
-  <button id="loadMoreButton">Mehr anzeigen</button>
-
-  <div class="tools" style="margin-top: 12px;">
-    <button id="exportBtn">📤 Exportieren</button>
-    <button id="importBtn">📥 Importieren</button>
-    <input type="file" id="importFile" accept=".json" style="display: none;" />
-  </div>
-
   <!-- Modal zur Eingabe -->
   <div id="modal" class="modal" style="display:none">
     <div class="modal-content">
@@ -56,6 +45,17 @@
 
       <button id="savePrompt">💾 Prompt speichern</button>
     </div>
+  </div>
+  
+  <!-- Prompt-Liste -->
+  <h2>Gespeicherte Prompts</h2>
+  <ul id="promptList"></ul>
+  <button id="loadMoreButton">Mehr anzeigen</button>
+
+  <div class="tools" style="margin-top: 12px;">
+    <button id="exportBtn">📤 Exportieren</button>
+    <button id="importBtn">📥 Importieren</button>
+    <input type="file" id="importFile" accept=".json" style="display: none;" />
   </div>
 
   <script src="popup.js"></script>

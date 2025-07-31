@@ -83,6 +83,20 @@ li button:hover {
   color: #000;
 }
 
+.prompt-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-line;
+  transition: max-height 0.2s;
+  max-height: 4.5em; /* Approx. 3 lines */
+}
+.prompt-text.expanded {
+  -webkit-line-clamp: unset;
+  max-height: none;
+}
+
 /* Dark Mode */
 body.dark {
   background-color: #121212;
